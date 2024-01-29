@@ -26,3 +26,80 @@ function calculateTax(income: number, taxYear: number = 2022): number {
 }
 
 calculateTax(10_000, 2022);
+
+///Type Alias
+type Employee = {
+  readonly id: number;
+  name: string;
+  retire: (date: Date) => void;
+};
+
+let employee: Employee = {
+  id: 1,
+  name: "Bahar",
+  retire: (date: Date) => {
+    console.log(date);
+  },
+};
+
+///Union Types
+function kgToLbs(weight: number | string): number {
+  if (typeof weight === "number") {
+    return weight * 2.2;
+  } else {
+    return parseInt(weight) * 2.2;
+  }
+}
+
+///Intersection Types
+type Draggable = {
+  drag: () => void;
+};
+type Resizable = {
+  resize: () => void;
+};
+
+type UIWidget = Draggable & Resizable;
+
+let textBox: UIWidget = {
+  drag: () => {},
+  resize: () => {},
+};
+
+///Literal Types
+type Quantity = 50 | 100;
+let quantity: Quantity = 100;
+
+type Metric = "cm" | "inch";
+let metric: Metric = "cm";
+
+///Nullable Types
+function greet(name: string | null | undefined) {
+  if (name) {
+    console.log(name.toUpperCase());
+  } else {
+    console.log("Hola!");
+  }
+}
+greet(null);
+greet(undefined);
+
+///Optional Properties
+type Customer = {
+  birthday?: Date;
+};
+function getCustomer(id: number): Customer | null | undefined {
+  return id === 0 ? null : { birthday: new Date() };
+}
+
+let customer = getCustomer(1);
+// Optional property access operator
+console.log(customer?.birthday?.getFullYear());
+
+// Optional element access operator
+let customers = [customer];
+console.log(customers[0]?.birthday?.getFullYear());
+
+// Optional call
+let log: any = null;
+log?.("a");
