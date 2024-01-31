@@ -51,6 +51,20 @@ function kgToLbs(weight: number | string): number {
   }
 }
 
+///Remove a member of a Union type
+type Letters = "a" | "b" | "c";
+type RemoveC<TType> = TType extends "c" ? never : TType;
+type WowWithoutC = RemoveC<Letters>;
+
+///Remove a member from an inteface: Omit
+interface LettersC {
+  a: "a";
+  b: "b";
+  c: "c";
+}
+
+type OmitC = Omit<LettersC, "c">;
+
 ///Intersection Types
 type Draggable = {
   drag: () => void;
@@ -65,6 +79,15 @@ let textBox: UIWidget = {
   drag: () => {},
   resize: () => {},
 };
+
+///We can use Intersection for inhertance in types
+type EventType = {
+  name: string;
+  dateCreated: string;
+  type: string;
+};
+
+type UserEvent = EventType & { UserId: string };
 
 ///Literal Types
 type Quantity = 50 | 100;
