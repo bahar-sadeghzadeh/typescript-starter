@@ -68,4 +68,7 @@ type SampleResponse1<Data extends object = { status: number }> = {
   isError: boolean;
 };
 
-///
+///Return the type what I pass as input
+const returnWhatIpassIn = <T>(value: T): T => {
+  return value;
+};
