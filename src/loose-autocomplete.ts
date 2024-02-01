@@ -1,9 +1,9 @@
 ////When we want to have the autocomplete and any other arbitrary type values
 
 // type IconSize = "sm" | "xs" | Omit<string, "sm" | "xs">;
-type IconSize = LooseAutocomplete<"sm" | "xs">;
-
 type LooseAutocomplete<T extends string> = T | Omit<string, T>;
+
+type IconSize = LooseAutocomplete<"sm" | "xs">;
 
 interface IconProps {
   size: IconSize;
